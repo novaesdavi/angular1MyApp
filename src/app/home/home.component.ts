@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HousingLocationComponent } from '../housing-location/housing-location.component';
 import { HousingLocation } from '../housinglocation';
+import { HousingService } from '../housing.service';
 
 @Component({
   selector: 'app-home',
@@ -15,24 +16,23 @@ import { HousingLocation } from '../housinglocation';
     </form>
   </section>
   <section>
-  <app-housing-location [housingLocation]="housingLocation"></app-housing-location>
+  <app-housing-location 
+  *ngFor="let housingLocation of housingLocationList"
+  [housingLocation]="housingLocation"></app-housing-location>
   </section>
   `,
   styleUrls: ['./home.component.css']
 })
 
 export class HomeComponent {
-  readonly baseUrl = 'https://angular.io/assets/images/tutorials/faa';
 
-  housingLocation: HousingLocation = {
-    id: 1,
-    name: 'Fairfield Apartments',
-    city: 'Fairfield',
-    state: 'IA',
-    photo: `${this.baseUrl}/example-house.jpg`,
-    availableUnits: 3,
-    wifi: true,
-    laundry: true
-  };
+  housingLocationList: HousingLocation[] = [];
+
+  housingService: HousingService = inject(HousingService);
+
+  constructor() {
+    this.housingLocationList = this.housingService.getAllHousingLocations();
+
+  }
 
 }

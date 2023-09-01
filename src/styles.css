@@ -7,6 +7,7 @@
 body {
   font-family: 'Be Vietnam Pro', sans-serif;
 }
+
 :root {
   --primary-color: #605DC8;
   --secondary-color: #8B89E6;
@@ -21,3 +22,10 @@ button.primary {
   color: white;
   border-radius: 8px;
 }
+
+
+/*
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+*/
